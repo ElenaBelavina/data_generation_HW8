@@ -3,56 +3,55 @@ package tests;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import static com.codeborne.selenide.Selenide.*;
+import testdata.TestData;
 
 public class RegistrationWithPageObjectsTests extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
-
+    TestData testData = new TestData();
     @Test
     void successfulRegistrationTest() {
         registrationPage.openPage().closeBanners()
-                        .setFirstName("Alex")
-                        .setLastName("Petrov")
-                        .setEmail("petrov@mail.ru")
-                        .setGender("Male")
-                        .setUserNumber("9031235577")
-                        .setDateOfBirth("26","September","1995")
-                        .setSubjects("English")
-                        .setSubjects("Biology")
-                        .setSubjects("History")
-                        .setHobbies("Sports")
-                        .uploadPicture("giraffe.jpeg")
-                        .setCurrentAddress("Moscow city")
-                        .setState("NCR")
-                        .setCity("Gurgaon")
+                        .setFirstName(testData.firstName)
+                        .setLastName(testData.lastName)
+                        .setEmail(testData.userEmail)
+                        .setGender(testData.gender)
+                        .setUserNumber(testData.userNumber)
+                        .setDateOfBirth(testData.dateDay,testData.dateMonth,testData.dateYear)
+                        .setSubjects(testData.subjects)
+                        .setHobbies(testData.hobbies)
+                        .uploadPicture(testData.picture)
+                        .setCurrentAddress(testData.currentAddress)
+                        .setState(testData.state)
+                        .setCity(testData.city)
                         .submit();
 
-        registrationPage.checkResult("Student Name", "Alex Petrov")
-                        .checkResult("Student Email", "petrov@mail.ru")
-                        .checkResult("Gender", "Male")
-                        .checkResult("Mobile","9031235577")
-                        .checkResult("Date of Birth","26 September,1995")
-                        .checkResult("Subjects","English, Biology, History")
-                        .checkResult("Hobbies","Sports")
-                        .checkResult("Picture","giraffe.jpeg")
-                        .checkResult("Address","Moscow city")
-                        .checkResult("State and City","NCR Gurgaon");
+        registrationPage.checkResult("Student Name", testData.firstName+" "+testData.lastName)
+                        .checkResult("Student Email", testData.userEmail)
+                        .checkResult("Gender", testData.gender)
+                        .checkResult("Mobile",testData.userNumber)
+                        .checkResult("Date of Birth",testData.dateDay+" "+testData.dateMonth+","+testData.dateYear)
+                        .checkResult("Subjects",testData.subjects)
+                        .checkResult("Hobbies",testData.hobbies)
+                        .checkResult("Picture",testData.picture)
+                        .checkResult("Address",testData.currentAddress)
+                        .checkResult("State and City",testData.state+" "+testData.city);
 
-        //sleep(5000);
+       // sleep(5000);
     }
 
     @Test
     void registrationMinTest(){
         registrationPage.openPage().closeBanners()
-                        .setFirstName("Olga")
-                        .setLastName("Ivanova")
-                        .setGender("Female")
-                        .setUserNumber("9031230099")
+                        .setFirstName(testData.firstName)
+                        .setLastName(testData.lastName)
+                        .setGender(testData.gender)
+                        .setUserNumber(testData.userNumber)
                         .submit();
 
-        registrationPage.checkResult("Student Name", "Olga Ivanova")
-                        .checkResult("Gender", "Female")
-                        .checkResult("Mobile","9031230099");
+        registrationPage.checkResult("Student Name", testData.firstName+" "+testData.lastName)
+                        .checkResult("Gender", testData.gender)
+                        .checkResult("Mobile",testData.userNumber);
         //sleep(5000);
     }
 
@@ -60,19 +59,17 @@ public class RegistrationWithPageObjectsTests extends TestBase {
     void registrationNegativeTest(){
         registrationPage.openPage().closeBanners()
                         //.setFirstName("Alex")  //не заполняем имя
-                        .setLastName("Petrov")
-                        .setEmail("petrov@mail.ru")
-                        .setGender("Male")
-                        .setUserNumber("9031235577")
-                        .setDateOfBirth("26","September","1995")
-                        .setSubjects("English")
-                        .setSubjects("Biology")
-                        .setSubjects("History")
-                        .setHobbies("Sports")
-                        .uploadPicture("giraffe.jpeg")
-                        .setCurrentAddress("Moscow city")
-                        .setState("NCR")
-                        .setCity("Gurgaon")
+                        .setLastName(testData.lastName)
+                        .setEmail(testData.userEmail)
+                        .setGender(testData.gender)
+                        .setUserNumber(testData.userNumber)
+                        .setDateOfBirth(testData.dateDay,testData.dateMonth,testData.dateYear)
+                        .setSubjects(testData.subjects)
+                        .setHobbies(testData.hobbies)
+                        .uploadPicture(testData.picture)
+                        .setCurrentAddress(testData.currentAddress)
+                        .setState(testData.state)
+                        .setCity(testData.city)
                         .submit();
 
         registrationPage.checkModalDialog();
