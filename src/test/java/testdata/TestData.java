@@ -3,7 +3,8 @@ package testdata;
 import com.github.javafaker.Faker;
 
 public class TestData {
-    Faker faker = new Faker();
+   Faker faker = new Faker();
+    
    public String firstName = faker.name().firstName(),
                  lastName = faker.name().lastName(),
                  userEmail = faker.internet().emailAddress(),
@@ -21,6 +22,8 @@ public class TestData {
                  currentAddress = faker.address().fullAddress(),
                  state = faker.options().option("Haryana","NCR", "Rajasthan","Uttar Pradesh"),
                  city = chooseCity(state);
+
+    
     String chooseCity(String state) {
         switch (state) {
             case "Haryana":
