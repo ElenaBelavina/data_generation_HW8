@@ -17,27 +17,20 @@ public class TestData {
                          "Computer Science","Commerce","Civics","English","Economics","Hindi","History",
                           "Maths","Physics","Social Studies"),
                  hobbies = faker.options().option("Sports","Reading","Music"),
-                     //   .uploadPicture("giraffe.jpeg")
                  picture = getPicture(),
                  currentAddress = faker.address().fullAddress(),
                  state = faker.options().option("Haryana","NCR", "Rajasthan","Uttar Pradesh"),
                  city = chooseCity(state);
     String chooseCity(String state) {
-        //String result="";
         switch (state) {
             case "Haryana":
                 return faker.options().option("Karnal", "Panipat");
-                //break;
             case "NCR":
                 return faker.options().option("Delhi", "Gurgaon", "Noida");
-               // break;
             case "Rajasthan":
                 return faker.options().option("Jaipur", "Jaiselmer");
-                //break;
             case "Uttar Pradesh":
                 return faker.options().option("Agra", "Lucknow", "Merrut");
-               //break;
-
         }
         return null;
     }
