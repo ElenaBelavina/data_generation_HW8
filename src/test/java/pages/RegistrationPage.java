@@ -101,11 +101,7 @@ public class RegistrationPage {
 
         return this;
     }
-    public RegistrationPage setPermanentAddress(String value) {
-        permanentAddressInput.setValue(value);
 
-        return this;
-    }
     public RegistrationPage setState(String value) {
         stateInput.click();
         stateCityWrapperInput.$(byText(value)).click();
