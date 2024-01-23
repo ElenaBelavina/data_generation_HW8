@@ -58,7 +58,7 @@ public class RegistrationWithPageObjectsTests extends TestBase {
     @Test
     void registrationNegativeTest(){
         registrationPage.openPage().closeBanners()
-                        //.setFirstName("Alex")  //не заполняем имя
+                        //.setFirstName(testData.firstName)  //не заполняем имя
                         .setLastName(testData.lastName)
                         .setEmail(testData.userEmail)
                         .setGender(testData.gender)
